@@ -1,0 +1,49 @@
+server:
+  port: 8082
+spring:
+  servlet:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 10MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/work2 ?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    hikari:
+      max-lifetime: 30000
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    properties:
+      hibernate:
+        format_sql: true
+  redis:
+    database: 2
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10s
+    lettuce:
+      pool:
+        max-active: 200
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 0
+sa-token:
+  token-name: Authorization
+  # 过期时间 3天
+  timeout: 259200
+  # 临时有效期
+  activity-timeout: -1
+  #是否允许同一账号并发登录
+  is-concurrent: true
+  is-share: true
+  token-style: random-64
+  is-log: true
+  # 前后台分离，只从请求头中读token
+  is-read-cookie: false
+  is-read-head: true
+  is-read-body: false
